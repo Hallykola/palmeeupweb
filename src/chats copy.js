@@ -7,7 +7,7 @@ import { collection, query, where, onSnapshot,getFirestore,addDoc,orderBy } from
 
 
 class Chats extends Component {
-  state = { myform: [], chats: [], myemail: localStorage.getItem('email'), receiver: window.location.pathname.split('/')[2]??'' };
+  state = { myform: [], chats: [], myemail: this.props.email, receiver: 'haliruyusuf6@gmail.com' };
 
   chats = async function () {
     const db = getFirestore(app);
@@ -56,7 +56,7 @@ class Chats extends Component {
 
   handleinput = (e) => {
     const myform = { ...this.state.myform };
-    myform[e.target.name] = e.target.value;
+    myform[e.target.name] = e.target.value.trim();
     this.setState({ myform }, () => { console.log(this.state) });
 
   }
@@ -73,7 +73,7 @@ class Chats extends Component {
 
   render() {
 
-    return <div style={{ width: '100%',backgroundColor:'#07003' }}>
+    return <div style={{ width: '100%' }}>
       <div className='fixed-content'
       // style={{height:'200px',width:'500px',backgroundColor:'red',
       // }}
