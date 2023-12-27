@@ -1,12 +1,18 @@
 body {
   background-color: #070033;
-  margin: 0;
+  margin-top: 60px;
+  /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* body::before{
+  display:block;
+  content: "";
+  height: 20%;
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -16,6 +22,7 @@ code {
   top: 0;
   bottom:10%;
   width:100%;
+  padding-top: 30px;
   background-color:  #070033;
   position:fixed;
   overflow-y:scroll;
@@ -60,6 +67,20 @@ code {
   float:inline-end;
 }
 .center {
+  /* margin: 0 ;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  width:50%; */
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  color:white;
+  background-color: #070033;
+  text-align: center ;
+}
+.centerCenter {
   margin: 0 ;
   padding-bottom: 50px;
   padding-top: 50px;
@@ -74,12 +95,25 @@ code {
   text-align: center ;
 }
 label{
-  height: 7em;
+  /* height: 7em; */
 } 
 input{
   height: 2em;
   width: 30vw;
   min-width: min-content;
+}
+
+.addtaginput{
+  height: 2em;
+  width: 30vw;
+  border-radius: 45px;
+  min-width: min-content;
+  margin-right: 20px;
+}
+.addtaginputbutton{
+  border-radius: 45px;
+  background-color:#089A6E;
+  color:white;
 }
 .contentcenter{
 
@@ -117,6 +151,12 @@ input{
   text-align: start;
   margin-left: 2vw;
 }
+.dashboardImage{
+  height: 15vw;
+  width: 15vw;
+  border-radius: 50%;
+  vertical-align: middle;
+}
 .listImage{
   width: 5vw;
   border-radius: 50%;
@@ -128,13 +168,43 @@ input{
   vertical-align: middle;
 }
 .tabletags{
-  /* width: 20%; */
+  width: 30%;
+}
+.profilePageImage{
+  height: 30vh;
+  border-radius: 10%;
+  vertical-align: middle;
+  margin-bottom: 50px;
+  margin-top: 30px;
 }
 
 .tablepix{
-  /* width: 30%; */
+  width: 20%;
+  text-align: center;
 
 }
 .tablename{
   /* width: 50%; */
 }
+.tablerow{
+  /* background-color: brown; */
+  margin-left:auto;
+  margin-right:auto;
+  border-color: white;
+  border-bottom: #F36D21;
+  /* border-bottom:2px solid white;  */
+}
+
+.backicon{
+ font-size:48px;
+ color:white;
+ margin-right: 55px;
+ text-align: start;
+
+}
+.backtitle{
+  font-size:48px;
+  text-align: center;
+  color:white;
+
+ }

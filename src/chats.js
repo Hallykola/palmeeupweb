@@ -1,13 +1,16 @@
 // import firebase from './firebase';
 import { Component } from 'react';
 import { app } from "./firebase";
+import Loading  from "./loading";
+import BackWithHeader  from "./components/backheader";
+
 // import { getFirestore, collection, getDocs, query, where, addDoc,orderBy } from 'firebase/firestore/lite';
 import { collection, query, where, onSnapshot,getFirestore,addDoc,orderBy } from "firebase/firestore";
 
 
 
 class Chats extends Component {
-  state = { myform: [], chats: [], myemail: localStorage.getItem('email'), receiver: window.location.pathname.split('/')[2]??'' };
+  state = {loading:true, myform: [], chats: [], myemail: localStorage.getItem('email'), receiver: window.location.pathname.split('/')[2]??'' };
 
   chats = async function () {
     const db = getFirestore(app);
@@ -26,7 +29,9 @@ class Chats extends Component {
         chats.push(doc.data());
       });
       chats.sort((a,b)=> b.timeStamp - a.timeStamp);
-      this.setState({ chats });
+      this.setState({ chats,loading:false },()=>{
+        console.log(this.state);
+      });
     });
   
   }
@@ -73,11 +78,13 @@ class Chats extends Component {
 
   render() {
 
-    return <div style={{ width: '100%',backgroundColor:'#07003' }}>
+    return (this.state.loading)?<><Loading/></>:<div style={{ width: '100%',backgroundColor:'#07003',marginTop:'40px' }}>
+      <BackWithHeader title="Chat"/>
       <div className='fixed-content'
       // style={{height:'200px',width:'500px',backgroundColor:'red',
       // }}
       >
+         
 
         {(this.state.chats.length === 0) ? 'Loading...' :
           this.state.chats.map((item) => {

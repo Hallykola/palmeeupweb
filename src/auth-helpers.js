@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut } from "firebase/auth";
-import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail,updatePassword } from "firebase/auth";
 
 const auth = getAuth();
 
@@ -61,7 +61,7 @@ export const signInUser = (email, password,callback,errorCallback)=>{
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    errorCallback(error);
+    errorCallback(errorMessage);
   });
 }
 
@@ -73,4 +73,31 @@ export const signOutUser = (callback,errorCallback)=>{
         // An error happened.
         errorCallback();
       });
+}
+export const sendPasswordReset = (email,callback,errorcallback)=>{
+  sendPasswordResetEmail(auth, email)
+  .then(() => {
+    // Password reset email sent!
+    // ..
+    callback();
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+    errorcallback(error);
+  });
+}
+export const changepassword = (newPassword,callback,errorCallback)=>{
+  const user = auth.currentUser;
+
+updatePassword(user, newPassword).then(() => {
+  // Update successful.
+  callback();
+}).catch((error) => {
+  // An error ocurred
+  // ...
+  errorCallback(error);
+});
+
 }

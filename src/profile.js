@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import {getTagUsers,addTag,removeTag,fetchProfile} from "./helpers";
+import Loading  from "./loading";
+import BackWithHeader from './components/backheader';
 
 
 class Profile extends Component{
@@ -17,10 +19,11 @@ class Profile extends Component{
     }
 
     render(){
-        return <>
-            <div  className='center'>
+        return (this.state.profile.full_name==null)?<><Loading/></>:<>
+                        <BackWithHeader title="Profile"/>
 
-        <h1>Profile</h1>
+            <div  className='center'>
+        {/* <h1>Profile</h1> */}
         {/* <p>{(this.state.profile.email!==null)&&this.state.profile.picture }</p> */}
         {(this.state.profile.picture !== null) && <img className='profileImage' src={this.state.profile.picture} alt='profile' height='300vh' />}
         <br/>
@@ -40,6 +43,7 @@ class Profile extends Component{
         <p>Date Joined: {(this.state.profile.email!==null)&&this.state.profile.date_joined }</p>
         <a href={'/chat/'+ this.state.profile.email} >Chat with {this.state.profile.full_name}</a>
         </div>
+        
         </>
     }
 }

@@ -60,6 +60,9 @@ class Registration extends Component{
         <br/><br/>
         <button className="loginButton" onClick={this.mysignUp}>Register</button>
         <br/>
+        <br/>
+        < a href="/login">Already have an account, Click to Log in</a>
+        <br/>
         </div>
         </>
     }

@@ -1,6 +1,9 @@
 import { Component } from "react";
+import {uploadPicture} from "./storage-helpers";
 import {getTagUsers,updateProfile,createProfile,fetchProfile} from "./helpers";
 import { Timestamp } from "firebase/firestore";
+import Loading  from "./loading";
+import BackWithHeader  from "./components/backheader";
 
 
 class EditProfile extends Component{
@@ -43,14 +46,35 @@ class EditProfile extends Component{
         form[e.target.name] = e.target.value;
         this.setState({form},()=>{console.log(this.state.form)});
     }
-
+    uploadpicture = (e)=>{
+        uploadPicture(e.target.files[0],'webuseremail',(downloadURL)=>{
+            console.log('File available at:', downloadURL);
+            var form = this.state.form;
+            form['picture'] = downloadURL;
+            this.setState({form},()=>{
+                this.updateProfile(this.state.email,this.state.form,()=>{});
+            });
+            
+        });
+        alert('Profile picture will be automatically replaced');
+    }
     componentDidMount(){
         this.fetchprofile();
     }
     render(){
-        return <>
+        return (this.state.profile.full_name==null)?<><Loading/></>:<>
+            <BackWithHeader title="Edit Profile"/>
             <div  className='center'>
-        <h1>Edit Profile</h1>
+           
+        {/* <h1>Edit Profile</h1> */}
+        <img src={this.state.profile.picture??'/regpix.png'} className="profilePageImage" />
+        <br/>
+        <input type="file" name="newprofileimage" onChange={this.uploadpicture} accept="image/*" />
+        <br/>
+
+        <br/>
+        < a href="/changepassword">Change password</a>
+        <br/>
         <label for="fullname">Full Name: </label> <br/>
         <input id="fullname" type="text" name="full_name" onChange={this.handleInput} value={this.state.form.full_name} />
         <br/>
