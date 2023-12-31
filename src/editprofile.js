@@ -1,6 +1,6 @@
 import { Component } from "react";
 import {uploadPicture} from "./storage-helpers";
-import {getTagUsers,updateProfile,createProfile,fetchProfile} from "./helpers";
+import {getTagUsers,updateProfile,createProfile,fetchProfile, myGetTimeStamp} from "./helpers";
 import { Timestamp } from "firebase/firestore";
 import Loading  from "./loading";
 import BackWithHeader  from "./components/backheader";
@@ -10,10 +10,10 @@ class EditProfile extends Component{
     
     state = {email:this.props.email,profile:{},form:{}};
     saveprofileState = (profileData)=>{
-        if(profileData==null){
-            console.log('profileData:',profileData);
-            this.createProfileIfNotFound();
-        }
+        // if(profileData==null){
+        //     console.log('profileData:',profileData);
+        //     this.createProfileIfNotFound();
+        // }
         this.setState({ profile:profileData,form:profileData },
             ()=>{
                 console.log(this.state);
@@ -23,18 +23,18 @@ class EditProfile extends Component{
         fetchProfile(this.state.email, this.saveprofileState);
 
     }
-    createProfileIfNotFound = ()=>{
+    // createProfileIfNotFound = ()=>{
 
-        let timestamp = new Date().getTime();
-        var data = {full_name:'',
-        twitter:'',facebook:'',linkedin:'',
-        tags:[],picture:null,city:'Lagos',
-        email:this.state.email,friends:null,date_joined:timestamp, 
-        instagram:'',phone:'',bio:'',phone_visibility:true,profile_visibility:true};
-        createProfile(this.state.email,data,()=>{
-            console.log(`new profile created for ${this.state.email}`);
-        });
-    }
+    //     let timestamp = myGetTimeStamp();
+    //     var data = {full_name:'',
+    //     twitter:'',facebook:'',linkedin:'',
+    //     tags:[],picture:null,city:'Lagos',
+    //     email:this.state.email,friends:null,date_joined:timestamp, 
+    //     instagram:'',phone:'',bio:'',phone_visibility:true,profile_visibility:true};
+    //     createProfile(data,()=>{
+    //         console.log(`new profile created for ${this.state.email}`);
+    //     });
+    // }
     updateProfile = ()=>{
         updateProfile(this.state.email,this.state.form,()=>{
             // this.saveprofileState() 

@@ -1,18 +1,27 @@
 import { doc,setDoc, arrayUnion, updateDoc,collection, query, where, onSnapshot,getFirestore,addDoc,orderBy, arrayRemove } from "firebase/firestore";
 import { app } from "./firebase";
 
+export const myGetTimeStamp = ()=>{
+    return new Date().getTime();
+}
 export const updateProfile = (email,data,callback)=>{
     const db = getFirestore(app);
     const mydoc = doc(db, "users", email);
     setDoc(mydoc,data);
     callback();
 }
-export const createProfile = (email,data,callback)=>{
+export const createProfile = (data,callback)=>{
     const db = getFirestore(app);
     // const profilesCollection = collection(db, 'users');
 
-    const mydoc = doc(db, "users", email);
-    setDoc(mydoc,data);
+    const mydoc = doc(db, "users", data.email);
+    setDoc(mydoc,
+        {full_name:data.full_name,
+        twitter:'',facebook:'',linkedin:'',
+        tags:[],picture:null,city:'Lagos',
+        email:data.email,friends:null,date_joined:data.timestamp??'', 
+        instagram:'',phone:data.phone,bio:'',phone_visibility:true,profile_visibility:true}
+        );
     callback();
 }
 export const addTag = (email,tag,callback)=>{
@@ -53,12 +62,31 @@ export const fetchProfile = async (email,mycallback)=>{
 
     const mydoc = doc(db, "users", email);
 
-    onSnapshot(mydoc, (querySnapshot) => {
+    onSnapshot(mydoc, async(querySnapshot) => {
         
-        console.log(querySnapshot.data());
-        mycallback(querySnapshot.data());
+        
+        if(querySnapshot.data()==null){
+            await createProfileIfNotFound(email);
+            // fetchProfile(email,mycallback);
+        }else{
+            console.log(querySnapshot.data());
+            mycallback(querySnapshot.data());
+        }
+        
       });
    
+}
+export const createProfileIfNotFound = (email)=>{
+
+    let timestamp = myGetTimeStamp();
+    var data = {full_name:'',
+    twitter:'',facebook:'',linkedin:'',
+    tags:[],picture:null,city:'Lagos',
+    email:email,friends:null,date_joined:timestamp, 
+    instagram:'',phone:'',bio:'',phone_visibility:true,profile_visibility:true};
+    createProfile(data,()=>{
+        console.log(`new profile created for ${email}`);
+    });
 }
 
 export const fetchTrendingTags = async (location,mycallback)=>{

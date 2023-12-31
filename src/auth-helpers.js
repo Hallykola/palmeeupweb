@@ -1,7 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut } from "firebase/auth";
 import {signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail,updatePassword } from "firebase/auth";
-
-const auth = getAuth();
+import { app } from "./firebase";
+const auth = getAuth(app);
 
 export const signInWithGoogle = (callback,errorCallback)=>{
     const provider = new GoogleAuthProvider();

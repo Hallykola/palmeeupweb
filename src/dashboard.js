@@ -56,7 +56,7 @@ class Dashboard extends Component{
     }
     render(){
         
-        return (this.state.profile.full_name==null)?<><Loading/></>:<>
+        return (this.state.profile==null)?<><Loading/></>:<>
            
             <div  className='center'>
 
@@ -65,7 +65,7 @@ class Dashboard extends Component{
         
        <p></p>
        
-        <img src={this.state.profile.picture??'/regpix.png'} className="dashboardImage" />
+        <img src={this.state.profile.picture??'/profilepix.png'} className="dashboardImage" />
         {/* <h1>{this.state.profile.twitter}</h1> */}
         <br/>
         <h4>Trending Tags</h4>
@@ -98,7 +98,7 @@ class Dashboard extends Component{
                     window.location.href='/profile/' + value.email;
                 }}
                 >
-                <td className="tablepix"><span ><img src={value.picture??'/regpix.png'} className="listImage" /></span></td>
+                <td className="tablepix"><span ><img src={value.picture??'/profilepix.png'} className="listImage" /></span></td>
                 <td className="tablename"><span>{value.full_name}</span></td>
                 <td className="tabletags"> <span>{
                 tagMatch(this.state.profile.tags,value.tags).map((a)=>{
