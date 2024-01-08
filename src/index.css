@@ -1,5 +1,5 @@
 body {
-  background-color: #070033;
+  background-color: #070033 !important;
   margin-top: 60px;
   /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+ 
 }
 /* body::before{
   display:block;
@@ -19,8 +21,8 @@ code {
     monospace;
 }
 .fixed-content {
-  top: 0;
-  bottom:10%;
+  top: 170px;
+  bottom:5%;
   width:100%;
   padding-top: 30px;
   background-color:  #070033;
@@ -33,7 +35,7 @@ code {
   flex-direction: column-reverse;
 }
 .afterfixed-content {
-  top: 90%;
+  top: 95%;
   width:100%;
   height: 5%;
   background-color:  #070033;
@@ -45,8 +47,8 @@ code {
 }
 
 .chatinput {
-  top: 90%;
-  width:90%;
+  top: 95%;
+  width:86%;
   height: 5%;
   /* bottom:0%; */
   position:fixed;
@@ -57,8 +59,8 @@ code {
 }
 
 .sendbutton {
-  top: 90%;
-  width:8%;
+  top: 95%;
+  width:14%;
   height: 100%;
   /* bottom:0%; */
   overflow-y:scroll;
@@ -76,9 +78,19 @@ code {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); */
+  margin-top: 60px;
+  min-height: 100vh;
+  height: auto;
   color:white;
   background-color: #070033;
   text-align: center ;
+}
+.centerTop {
+  height: auto;
+  color:white;
+  /* width:100vw; */
+  background-color: #070033;
+  text-align: start ;
 }
 .centerCenter {
   margin: 0 ;
@@ -93,6 +105,7 @@ code {
   color:white;
   background-color: #070033;
   text-align: center ;
+  
 }
 label{
   /* height: 7em; */

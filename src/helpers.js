@@ -97,7 +97,9 @@ export const fetchTrendingTags = async (location,mycallback)=>{
     onSnapshot(mydoc, (querySnapshot) => {
         
         console.log(querySnapshot.data());
-        mycallback(querySnapshot.data());
+        if(querySnapshot.data!==null){
+            mycallback(querySnapshot.data());
+        }
       });
    
 }

@@ -49,8 +49,8 @@ class Dashboard extends Component{
         // fetchProfile('hallykola@gmail.com');
          fetchProfile(this.state.email, this.saveprofileStateAndGetTagsUser);
          fetchTrendingTags('lagos',(result)=>{
-            this.setState({trendingTags:result.tags});
-            console.log('trendingTags:',result.tags);
+            this.setState({trendingTags:result?.tags??[]});
+            console.log('trendingTags:',result?.tags??[]);
             
          });
     }
@@ -62,7 +62,8 @@ class Dashboard extends Component{
 
         <h1> Dashboard</h1>
         <h1 >{this.state.profile.full_name} <a href="/editprofile"><i class="fa fa-edit" style={{fontSize:'48px',color:'green'}}></i> </a></h1>
-        
+        <p>You are set to meet new people</p>
+        <br/>
        <p></p>
        
         <img src={this.state.profile.picture??'/profilepix.png'} className="dashboardImage" />

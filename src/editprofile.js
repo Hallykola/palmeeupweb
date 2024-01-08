@@ -63,11 +63,13 @@ class EditProfile extends Component{
     }
     render(){
         return (this.state.profile.full_name==null)?<><Loading/></>:<>
-            <BackWithHeader title="Edit Profile"/>
+        {/* <Navbar/> */}
             <div  className='center'>
-           
+            <div className="centerTop">
+        <BackWithHeader title="Edit Profile"/>
+        </div>
         {/* <h1>Edit Profile</h1> */}
-        <img src={this.state.profile.picture??'/regpix.png'} className="profilePageImage" />
+        <img src={this.state.profile.picture??'/profilepix.png'} className="profilePageImage" />
         <br/>
         <input type="file" name="newprofileimage" onChange={this.uploadpicture} accept="image/*" />
         <br/>
@@ -98,6 +100,10 @@ class EditProfile extends Component{
         <br/>
         <label for="facebook"> Facebook: </label> <br/>
         <input id="facebook" type="text" name="facebook" onChange={this.handleInput} value={this.state.form.facebook} />
+        <br/>
+        {/* <label>Make Profile Visible</label>
+            <input type="ra" onChange={this.handleInput} name="profile_visibility" />
+        */}
         <br/>
         <button onClick={this.updateProfile}>Update Data</button>
         </div>
